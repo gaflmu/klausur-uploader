@@ -1,0 +1,100 @@
+/* http://css3pie.com/documentation/getting-started/ */
+
+html, body, dl, dt, dd {
+	margin:0;
+	padding:0;
+}
+
+html, body {
+	font-family: Arial, sans-serif;
+	font-size: 11pt;
+	background: white;
+}
+
+dt, dd {
+	float:left;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+dt {
+	text-align:right;
+	clear: both;
+	width: 150px;
+	margin-right: 10px;
+}
+
+dd {
+	width: 200px;
+	position: relative;
+}
+
+/* The element after the definition list has to clear the floats */
+dl+* {
+	clear: both;
+}
+
+input, select, textarea {
+	width: 100%;
+}
+
+select {
+	height: 20px;
+}
+
+select:focus {
+	height: 100px;
+}
+
+.help {
+	border-width: 50px 19px 19px 40px;
+	-moz-border-image:url('helpbg.png') 50 19 19 40  repeat;
+	-webkit-border-image:url('helpbg.png') 50 19 19 40  repeat;
+	-o-border-image:url('helpbg.png') 50 19 19 40 repeat;
+	border-image:url('helpbg.png') 50 19 19 40 repeat;
+	/* https://bugzilla.mozilla.org/show_bug.cgi?id=748253 */
+	border-color: #cccccc;
+	border-style: solid;
+	width: 300px;
+	left: 200px;
+	top: -20px;
+	position: absolute;
+	visibility: hidden;
+}
+
+input:focus, textarea:focus, select:focus {
+	background-color: yellow;
+}
+
+input:focus + .help, textarea:focus + .help, select:focus + .help {
+	visibility: visible !important;
+}
+
+.selection {
+	height: 20px;
+	width: 100%;
+	background: red;
+}
+
+.myList {
+	position: relative;
+}
+
+.myList select {
+	position: absolute;
+	z-index: -1;
+/* 	display: none; */
+}
+
+.myList.open select {
+	position: relative;
+	z-index: 0;
+/* 	display: block; */
+}
+
+.myList .selection {
+	display: block;
+}
+.myList.open .selection {
+	display: none;
+}
