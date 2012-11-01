@@ -29,14 +29,38 @@ dd {
 	position: relative;
 }
 
+#noscript {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	
+	width: 100%;
+	height: 100%;
+	
+	background-color:rgba(0,0,0,0.7);
+}
+
+#noscript .message {
+	position: relative;
+	top: 50%;
+	left: 50%;
+	margin-top: -70px;
+	margin-left: -200px;
+	
+	/*height: 140px;*/
+	width: 400px;
+	
+	font-size: 12pt;
+	background: white;
+	color: black;
+	padding: 15px;
+}
+
 /* The element after the definition list has to clear the floats */
 dl+* {
 	clear: both;
 }
 
-input, select, textarea {
-	width: 100%;
-}
 
 select {
 	height: 20px;
@@ -46,12 +70,47 @@ select:focus {
 	height: 100px;
 }
 
+dd.error,
+dt.error {
+	color: rgb(170, 0, 0);
+}
+
+/* Inputs */
+input,
+select,
+textarea {
+	width: 100%;
+	border: solid black 1px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+	background-color: yellow;
+}
+
+dd.error input,
+dd.error textarea,
+dd.error select {
+	border-color: rgb(170, 0, 0);
+	color: rgb(170, 0, 0);
+	background: rgb(255, 210, 210);
+}
+
+dd.error input:focus,
+dd.error textarea:focus,
+dd.error select:focus {
+	color: black;
+	background: rgb(255, 200, 200);
+}
+
+/* Assistant */
 .help {
 	border-width: 50px 19px 19px 40px;
-	-moz-border-image:url('helpbg.png') 50 19 19 40  repeat;
-	-webkit-border-image:url('helpbg.png') 50 19 19 40  repeat;
-	-o-border-image:url('helpbg.png') 50 19 19 40 repeat;
-	border-image:url('helpbg.png') 50 19 19 40 repeat;
+	-moz-border-image:url('../img/helpbg.png') 50 19 19 40  repeat;
+	-webkit-border-image:url('../img/helpbg.png') 50 19 19 40  repeat;
+	-o-border-image:url('../img/helpbg.png') 50 19 19 40 repeat;
+	border-image:url('../img/helpbg.png') 50 19 19 40 repeat;
 	/* https://bugzilla.mozilla.org/show_bug.cgi?id=748253 */
 	border-color: #cccccc;
 	border-style: solid;
@@ -62,11 +121,9 @@ select:focus {
 	visibility: hidden;
 }
 
-input:focus, textarea:focus, select:focus {
-	background-color: yellow;
-}
-
-input:focus + .help, textarea:focus + .help, select:focus + .help {
+input:focus + .help,
+textarea:focus + .help,
+select:focus + .help {
 	visibility: visible !important;
 }
 

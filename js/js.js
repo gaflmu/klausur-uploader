@@ -10,3 +10,6 @@ lists.addLast(new MyList('prof'));
 //lists.getNth(0).update();
 
 var semSelector = new SemSelector($('year'), $('year-up'), $('year-down'));
+
+var assi = new Assistant();
+assi.setErrors($('foo'), ['foo', 'bar']);

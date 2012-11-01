@@ -1,5 +1,5 @@
 var Assistant = new Class({
-	setActive(name) {
+	setActive: function(name) {
 		if(this.active != name) {
 			// Hide old
 			$(this.active).removeClass('active');
@@ -16,26 +16,29 @@ var Assistant = new Class({
 		}
 	},
 	
-	setErrors: function(name, msgArray) {
-		// Find dt and el ...
+	setErrors: function(el, msgArray) {
+		var dd = el.getParent('dd');
+		var dt = dd.getPrevious('dt');
+		var ul = el.getChildren('ul')[0];
 		
 		
-		
-		
-		if((msgArray != null) && (msgArray.lngth > 0)) {
+		// Paint everything error-red
+		if((msgArray != null) && (msgArray.length > 0)) {
 			dt.addClass('error');
+			dd.addClass('error');
 			el.addClass('error');
 		}
 		else {
 			dt.removeClass('error');
+			dd.removeClass('error');
 			el.removeClass('error');
 		}
 		
 		
-		// Find ul
+		// Refill the error list
 		ul.getChildren().destroy().empty();
-		msgArray.each(function(msg)) {
-			ul.addopt(new Element('li', {text: msg})));
+		msgArray.each(function(msg) {
+			ul.adopt(new Element('li', {text: msg}));
 		});
 	}
 });
