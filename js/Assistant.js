@@ -1,44 +1,59 @@
 var Assistant = new Class({
-	setActive: function(name) {
-		if(this.active != name) {
-			// Hide old
-			$(this.active).removeClass('active');
-			
-			// Show new
-			if(name != null) {
-				this.defaultMsg.addClass('active');
-			}
-			else {
-				this.defaultMsg.addClass('active');
-			}
-			
-			this.active = name;
+	initialize: function(collection, assisted, text) {
+		this.collection = collection;
+		this.assisted = assisted;
+		this.dd = this.assisted.getParent('dd');
+		this.dt = this.dd.getPrevious('dt');
+		this.ul = new Element('ul', {class: 'errors'});
+		this.el = new Element('div', {class: 'assistant'})
+		.set('html', text);
+		
+		this.ul.inject(this.el, 'top');
+		this.el.inject(assisted, 'after');
+	},
+	
+	setActive: function(active) {
+		if(active) {
+			this.el.addClass('active');
+		}
+		else {
+			this.el.removeClass('active');
 		}
 	},
 	
-	setErrors: function(el, msgArray) {
-		var dd = el.getParent('dd');
-		var dt = dd.getPrevious('dt');
-		var ul = el.getChildren('ul')[0];
+	activate: function(force) {
+		if(force === undefined || force) {
+			var force = true;
+		}
 		
-		
+		this.collection.requestActivation(this, force);
+	},
+	
+	deactivate: function() {
+		this.collection.requestActivation(null, true);
+	},
+	
+	setErrors: function(msgArray) {
 		// Paint everything error-red
 		if((msgArray != null) && (msgArray.length > 0)) {
-			dt.addClass('error');
-			dd.addClass('error');
-			el.addClass('error');
+			this.dt.addClass('error');
+			this.dd.addClass('error');
+			this.el.addClass('error');
 		}
 		else {
-			dt.removeClass('error');
-			dd.removeClass('error');
-			el.removeClass('error');
+			this.dt.removeClass('error');
+			this.dd.removeClass('error');
+			this.el.removeClass('error');
 		}
 		
 		
 		// Refill the error list
-		ul.getChildren().destroy().empty();
+		this.ul.getChildren().destroy().empty();
 		msgArray.each(function(msg) {
-			ul.adopt(new Element('li', {text: msg}));
-		});
+			this.ul.adopt(new Element('li', {html: msg}));
+		}, this);
+		
+		// Be an attention whore
+		this.activate(false);
 	}
 });

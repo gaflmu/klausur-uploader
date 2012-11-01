@@ -15,6 +15,8 @@ var SemSelector = new Class({
 		this.downEl.addEvent('click', this.handleClickDown.bind(this));
 		
 		this.update(new Semester());
+		
+		this.assistant = assis.add(this.inputEl, 'Bla');
 	},
 	
 	extendYear: function(shortYear) {
@@ -289,14 +291,18 @@ var SemSelector = new Class({
 	
 	handleLostFocus: function() {
 		if(this.isValid() == false) {
-			var suggestions = this.fuzz(3,1);
-			var msg = "Ungültiges Semester Format, meintest du vieleicht\n"
+			var suggestions = this.fuzz(3, 1);
+			var msg = "Ung&uuml;ltiges Semester Format, meintest du vieleicht"
 			
 			for(var i = suggestions.length - 1; i >= 0; i--) {
-				msg += "   " + suggestions[i].toString() + "\n";
+				msg += " <a href=\"javascript:$('" + this.inputEl.id + "').set('value', '" + suggestions[i].toString() + "'); void(0);\">" + suggestions[i].toString() + "</a>";
 			}
+			msg += ".";
 			
-			alert(msg);
+			this.assistant.setErrors([msg]);
+		}
+		else {
+			this.assistant.setErrors([]);
 		}
 	}
 });

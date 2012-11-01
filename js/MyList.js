@@ -196,12 +196,15 @@ var MyList = new Class({
 		this.focused = true;
 		
 		this.collection.open(this);
+		this.assistant.activate();
 	},
 	
 	handleLostFocus: function (a) {
 		console.log(this.name + ": Lost focus");
 		
 		this.focused = false;
+		
+		this.assistant.deactivate();
 	},
 	
 	handleMouseClick: function (a) {
@@ -258,6 +261,8 @@ var MyList = new Class({
 		})
 		.addEvent('click', this.handleSelectionClick.bind(this));
 		container.adopt(this.elSelection);
+		
+		this.assistant = assis.add(this.elSelect, 'Bla');
 	},
 	
 	

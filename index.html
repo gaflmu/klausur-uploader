@@ -16,67 +16,56 @@
 	</head>
 	
 	<body>
-		<form action="submit.py" method="POST">
-			<dl>
-				<dt><label for="file">Dateien</label></dt>
-				<dd><input name="file" id="file" type="file" /></dd>
+		<div id="content">
+			<form action="submit.py" method="POST">
+				<dl>
+					<dt><label for="file">Dateien</label></dt>
+					<dd><input name="file" id="file" type="file" /></dd>
+					
+					<dt><label for="subject">Studiengang</label></dt>
+					<dd id="subject-container"></dd>
+					
+					<dt><label for="degree">Abschluss</label></dt>
+					<dd id="degree-container"></dd>
+					
+					<dt><label for="lecture">Fach</label></dt>
+					<dd id="lecture-container"></dd>
+					
+					<dt><label for="type">Art</label></dt>
+					<dd id="type-container"></dd>
+					
+					<dt><label for="subtype">Unterart</label></dt>
+					<dd id="subtype-container"></dd>
+					
+					<dt><label for="prof">Professor</label></dt>
+					<dd id="prof-container"></dd>
+					
+					<dt><label for="year">Jahr</label></dt>
+					<dd>
+						<input name="year" id="year" />
+						<img id="year-img" src="img/updown.png" usemap="#year-updown" />
+						<map name="year-updown">
+							<area id="year-up"   shape="rect" coords="0,0,24,24"  alt="Neueres Semester" />
+							<area id="year-down" shape="rect" coords="24,0,45,24" alt="&auml;lteres Semester" />
+						</map>
+					</dd>
+					
+					<dt><label for="comment">Komentar (optional)</label></dt>
+					<dd><textarea name="comment" id="comment" rows="10" cols="80"></textarea></dd>
+					
+					<dt><label for="mail">E-Mail (optional)</label></dt>
+					<dd><input name="mail" id="mail" /></dd>
+					
+					<dt>Absenden</dt>
+					<dd><input name="submit" id="submit" type="submit" value="Gutes tun" /></dd>
+				</dl>
+				<div class="clear">&nbsp;</div>
 				
-				<dt><label for="subject">Studiengang</label></dt>
-				<dd id="subject-container"></dd>
-				
-				<dt><label for="degree">Abschluss</label></dt>
-				<dd id="degree-container"></dd>
-				
-				<dt><label for="lecture">Fach</label></dt>
-				<dd id="lecture-container"></dd>
-				
-				<dt><label for="type">Art</label></dt>
-				<dd id="type-container"></dd>
-				
-				<dt><label for="subtype">Unterart</label></dt>
-				<dd id="subtype-container"></dd>
-				
-				<dt><label for="prof">Professor</label></dt>
-				<dd id="prof-container"></dd>
-				
-				<dt><label for="year">Jahr</label></dt>
-				<dd>
-					<input name="year" id="year" />
-					<div class="help">
-						<p>Das Semester aus dem die Dokumente Stammen.</p>
-						<p>Die Angabe des Wintersemesters von 2010 auf 2011 erfolgt zum Beispiel als <code>WS 2010/11</code> und für das Sommer Semster 2012 als <code>SS 2012</code>. Du kannst aber auch die Pfeilkn&ouml;pfe oder die Pfeiltasten Verwenden um in das n&auml;chste bzw. vorherige Semester zu gehen.</p>
-					</div>
-					<img src="updown.png" usemap="#year-updown" />
-					<map name="year-updown">
-						<area id="year-up"   shape="rect" coords="0,0,24,24"  alt="Neueres Semester" />
-						<area id="year-down" shape="rect" coords="24,0,45,24" alt="&auml;lteres Semester" />
-					</map>
-				</dd>
-				
-				<dt><label for="comment">Komentar (optional)</label></dt>
-				<dd>
-					<textarea name="comment" id="comment" rows="10" cols="80"></textarea>
-					<div class="help">
-						<p>Solltest du weitere Anmelkungen zu den Dokumenten haben oder die obrigen Angaben nicht genau zutreffen, so kannst du uns dies in einem Kommentar hinterlassen.</p>
-					</div>
-				</dd>
-				
-				<dt><label for="mail">E-Mail (optional)</label></dt>
-				<dd>
-					<input name="mail" id="mail" />
-					<div id="foo" class="help">
-						<ul class="errors">
-						</ul>
-						<p>Deine E-Mail Addresse kannst du angeben, damit wir dich bei rückfragen erreichen können. Deine E-Mail Addresse wird <em>nicht ver&ouml;ffentlicht</em>.</p>
-					</div>
-				</dd>
-				
-				<dt>Absenden</dt>
-				<dd><input name="submit" id="submit" type="submit" value="Gutes tun" /></dd>
-			</dl>
-			
-			<p class="help">Bla</p>
-		</form>
+				<div id="defaultassistant">
+					Default Assistant message
+				</div>
+			</form>
+		</div>
 		
 		<script src="js/mootools-core-1.4.5-full-nocompat.js" type="text/javascript"></script>
 		<script src="js/mootools-more-1.4.0.1.js"             type="text/javascript"></script>
@@ -86,6 +75,8 @@
 		<script src="js/Semester.js"                          type="text/javascript"></script>
 		<script src="js/SemSelector.js"                       type="text/javascript"></script>
 		<script src="js/Assistant.js"                         type="text/javascript"></script>
+		<script src="js/DefaultAssistant.js"                  type="text/javascript"></script>
+		<script src="js/AssistantCollection.js"               type="text/javascript"></script>
 		<script src="js/js.js"                                type="text/javascript"></script>
 		<noscript>
 			<div id="noscript">
