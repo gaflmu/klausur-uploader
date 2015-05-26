@@ -17,7 +17,7 @@
 	
 	<body>
 		<div id="content">
-			<form action="submit.py" method="POST">
+			<form action="submit.py" method="POST" onsubmit="doSend();">
 				<dl>
 					<dt><label for="file">Dateien</label></dt>
 					<dd><input name="file" id="file" type="file" /></dd>
@@ -37,7 +37,7 @@
 					<dt><label for="subtype">Unterart</label></dt>
 					<dd id="subtype-container"></dd>
 					
-					<dt><label for="prof">Professor</label></dt>
+					<dt><label for="prof">Dozent</label></dt>
 					<dd id="prof-container"></dd>
 					
 					<dt><label for="year">Jahr</label></dt>
@@ -50,7 +50,7 @@
 						</map>
 					</dd>
 					
-					<dt><label for="comment">Komentar (optional)</label></dt>
+					<dt><label for="comment">Kommentar (optional)</label></dt>
 					<dd><textarea name="comment" id="comment" rows="10" cols="80"></textarea></dd>
 					
 					<dt><label for="mail">E-Mail (optional)</label></dt>

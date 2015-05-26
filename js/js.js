@@ -17,3 +17,8 @@ var assi = assis.add($('comment'), '<p>Solltest du weitere Anmelkungen zu den Do
 var assi = assis.add($('mail'), '<p>Deine E-Mail Addresse kannst du angeben, damit wir dich bei r&uuml;ckfragen erreichen k&ouml;nnen. Deine E-Mail Addresse wird <em>nicht ver&ouml;ffentlicht</em>.</p>');
 //assi.setErrors(['foo', 'bar']);
 
+function doSend() {
+	if(assis.isValid() == false) {
+		alert("Es gibt noch fehler");
+	}
+}

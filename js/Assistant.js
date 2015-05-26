@@ -33,9 +33,9 @@ var Assistant = new Class({
 		this.collection.requestActivation(null, true);
 	},
 	
-	setErrors: function(msgArray) {
+	setErrors: function(msgs) {
 		// Paint everything error-red
-		if((msgArray != null) && (msgArray.length > 0)) {
+		if((msgs != null) && (msgs.length > 0)) {
 			this.dt.addClass('error');
 			this.dd.addClass('error');
 			this.el.addClass('error');
@@ -49,11 +49,17 @@ var Assistant = new Class({
 		
 		// Refill the error list
 		this.ul.getChildren().destroy().empty();
-		msgArray.each(function(msg) {
+		msgs.each(function(msg) {
 			this.ul.adopt(new Element('li', {html: msg}));
 		}, this);
 		
+		this.errorMsgs = msgs;
+		
 		// Be an attention whore
 		this.activate(false);
+	},
+	
+	isValid: function() {
+		return this.errorMsgs.length == 0;
 	}
 });

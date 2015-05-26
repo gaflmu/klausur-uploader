@@ -3,10 +3,13 @@ var AssistantCollection = new Class({
 		this.defaultAssistant = new DefaultAssistant(defaultEl);
 		this.active = this.defaultAssistant;
 		this.active.setActive(true);
+		this.assistants = [];
 	},
 	
 	add: function(assisted, text) {
-		return new Assistant(this, assisted, text);
+		var assistant = new Assistant(this, assisted, text);
+		this.assistants.push(assistant);
+		return assistant;
 	},
 	
 	requestActivation: function(assistant, force) {
@@ -22,4 +25,14 @@ var AssistantCollection = new Class({
 			}
 		}
 	},
+	
+	isValid: function() {
+		var valid = true;
+		
+		this.assistants.each(function(assistant) {
+			valid &= assistant.isValid();
+		}).bind(this);
+		
+		return valid;
+	}
 });
